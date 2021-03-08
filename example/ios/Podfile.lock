@@ -1,0 +1,28 @@
+PODS:
+  - device_info (0.0.1):
+    - Flutter
+  - Flutter (1.0.0)
+  - flutter_native_user_agent (0.0.1):
+    - Flutter
+
+DEPENDENCIES:
+  - device_info (from `.symlinks/plugins/device_info/ios`)
+  - Flutter (from `Flutter`)
+  - flutter_native_user_agent (from `.symlinks/plugins/flutter_native_user_agent/ios`)
+
+EXTERNAL SOURCES:
+  device_info:
+    :path: ".symlinks/plugins/device_info/ios"
+  Flutter:
+    :path: Flutter
+  flutter_native_user_agent:
+    :path: ".symlinks/plugins/flutter_native_user_agent/ios"
+
+SPEC CHECKSUMS:
+  device_info: d7d233b645a32c40dfdc212de5cf646ca482f175
+  Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
+  flutter_native_user_agent: 79aad6f9047473a7262d1559e35f44bffce8d266
+
+PODFILE CHECKSUM: aafe91acc616949ddb318b77800a7f51bffa2a4c
+
+COCOAPODS: 1.10.0
