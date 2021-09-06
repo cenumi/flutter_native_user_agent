@@ -1,11 +1,10 @@
 import 'dart:async';
 import 'dart:io';
-
-import 'package:device_info/device_info.dart';
 import 'package:flutter/services.dart';
+import 'package:device_info_plus/device_info_plus.dart';
 
 class FlutterNativeUserAgent {
-  static final _instance = FlutterNativeUserAgent._();
+  static late final _instance = FlutterNativeUserAgent._();
 
   factory FlutterNativeUserAgent() => _instance;
 
@@ -17,9 +16,9 @@ class FlutterNativeUserAgent {
 
   Future<String> get userAgent async {
     if (_cache.isEmpty) {
-      if(Platform.isAndroid){
+      if (Platform.isAndroid) {
         _cache = (await _channel.invokeMethod('getUserAgent')).toString();
-      }else{
+      } else {
         _cache = await _iosUserAgent;
       }
     }
@@ -32,7 +31,7 @@ class FlutterNativeUserAgent {
     return 'CFNetwork/$cfnVersion Darwin/${iosInfo.utsname.release} (${iosPhoneName(iosInfo.utsname.machine)} ${iosInfo.systemName}/${iosInfo.systemVersion})';
   }
 
-  String iosPhoneName(String codeName) {
+  String iosPhoneName(String? codeName) {
     const iphone = 'iPhone';
     switch (codeName) {
       case '${iphone}5,1':
@@ -93,6 +92,6 @@ class FlutterNativeUserAgent {
       case '${iphone}13,4':
         return '$iphone 12 Pro Max';
     }
-    return codeName;
+    return iphone;
   }
 }
