@@ -28,70 +28,44 @@ class FlutterNativeUserAgent {
   Future<String> get _iosUserAgent async {
     final iosInfo = await DeviceInfoPlugin().iosInfo;
     final cfnVersion = (await _channel.invokeMethod('getCfnVersion')).toString();
-    return 'CFNetwork/$cfnVersion Darwin/${iosInfo.utsname.release} (${iosPhoneName(iosInfo.utsname.machine)} ${iosInfo.systemName}/${iosInfo.systemVersion})';
+    return 'CFNetwork/$cfnVersion Darwin/${iosInfo.utsname.release} (${iosPhoneName(iosInfo.utsname.machine)} ${iosInfo
+        .systemName}/${iosInfo.systemVersion})';
   }
 
-  String iosPhoneName(String? codeName) {
-    const iphone = 'iPhone';
-    switch (codeName) {
-      case '${iphone}5,1':
-      case '${iphone}5,2':
-        return '$iphone 5';
-      case '${iphone}5,3':
-      case '${iphone}5,4':
-        return '$iphone 5C';
-      case '${iphone}6,1':
-      case '${iphone}6,2':
-        return '$iphone 5S';
-      case '${iphone}7,1':
-        return '$iphone 6 Plus';
-      case '${iphone}7,2':
-        return '$iphone 6';
-      case '${iphone}8,1':
-        return '$iphone 6S';
-      case '${iphone}8,2':
-        return '$iphone 6S Plus';
-      case '${iphone}8,4':
-        return '$iphone SE';
-      case '${iphone}9,1':
-      case '${iphone}9,3':
-        return '$iphone 7';
-      case '${iphone}9,2':
-      case '${iphone}9,4':
-        return '$iphone 7 Plus';
-      case '${iphone}10,1':
-      case '${iphone}10,4':
-        return '$iphone 8';
-      case '${iphone}10,2':
-      case '${iphone}10,5':
-        return '$iphone 8 Plus';
-      case '${iphone}10,3':
-      case '${iphone}10,6':
-        return '$iphone X';
-      case '${iphone}11,2':
-        return '$iphone XS';
-      case '${iphone}11,4':
-      case '${iphone}11,6':
-        return '$iphone XS MAX';
-      case '${iphone}11,8':
-        return '$iphone XR';
-      case '${iphone}12,1':
-        return '$iphone 11';
-      case '${iphone}12,3':
-        return '$iphone 11 Pro';
-      case '${iphone}12,5':
-        return '$iphone 11 Pro Max';
-      case '${iphone}12,8':
-        return '$iphone SE 2';
-      case '${iphone}13,1':
-        return '$iphone 12 mini';
-      case '${iphone}13,2':
-        return '$iphone 12';
-      case '${iphone}13,3':
-        return '$iphone 12 Pro';
-      case '${iphone}13,4':
-        return '$iphone 12 Pro Max';
-    }
-    return iphone;
-  }
+  String iosPhoneName(String? codeName) =>
+      switch (codeName) {
+        'iPhone5,1' || 'iPhone5,2' => 'iPhone 5',
+        'iPhone5,3' || 'iPhone5,4' => 'iPhone 5C',
+        'iPhone6,1' || 'iPhone6,2' => 'iPhone 5S',
+        'iPhone7,1' => 'iPhone 6 Plus',
+        'iPhone7,2' => 'iPhone 6',
+        'iPhone8,1' => 'iPhone 6S',
+        'iPhone8,2' => 'iPhone 6S Plus',
+        'iPhone8,4' => 'iPhone SE',
+        'iPhone9,1' || 'iPhone9,3' => 'iPhone 7',
+        'iPhone9,2' || 'iPhone9,4' => 'iPhone 7 Plus',
+        'iPhone10,1' || 'iPhone10,4' => 'iPhone 8',
+        'iPhone10,2' || 'iPhone10,5' => 'iPhone 8 Plus',
+        'iPhone10,3' || 'iPhone10,6' => 'iPhone X',
+        'iPhone11,2' => 'iPhone XS',
+        'iPhone11,4' || 'iPhone11,6' => 'iPhone XS MAX',
+        'iPhone11,8' => 'iPhone XR',
+        'iPhone12,1' => 'iPhone 11',
+        'iPhone12,3' => 'iPhone 11 Pro',
+        'iPhone12,5' => 'iPhone 11 Pro Max',
+        'iPhone12,8' => 'iPhone SE 2',
+        'iPhone13,1' => 'iPhone 12 mini',
+        'iPhone13,2' => 'iPhone 12',
+        'iPhone13,3' => 'iPhone 12 Pro',
+        'iPhone13,4' => 'iPhone 12 Pro Max',
+        'iPhone14,4' => 'iPhone 13 mini',
+        'iPhone14,5' => 'iPhone 13',
+        'iPhone14,2' => 'iPhone 13 Pro',
+        'iPhone14,3' => 'iPhone 13 Pro Max',
+        'iPhone14,7' => 'iPhone 14',
+        'iPhone14,8' => 'iPhone 14 Plus',
+        'iPhone15,2' => 'iPhone 14 Pro',
+        'iPhone15,3' => 'iPhone 14 Pro Max',
+        _ => 'iPhone'
+      };
 }
