@@ -28,12 +28,10 @@ class FlutterNativeUserAgent {
   Future<String> get _iosUserAgent async {
     final iosInfo = await DeviceInfoPlugin().iosInfo;
     final cfnVersion = (await _channel.invokeMethod('getCfnVersion')).toString();
-    return 'CFNetwork/$cfnVersion Darwin/${iosInfo.utsname.release} (${iosPhoneName(iosInfo.utsname.machine)} ${iosInfo
-        .systemName}/${iosInfo.systemVersion})';
+    return 'CFNetwork/$cfnVersion Darwin/${iosInfo.utsname.release} (${iosPhoneName(iosInfo.utsname.machine)} ${iosInfo.systemName}/${iosInfo.systemVersion})';
   }
 
-  String iosPhoneName(String? codeName) =>
-      switch (codeName) {
+  String iosPhoneName(String? codeName) => switch (codeName) {
         'iPhone5,1' || 'iPhone5,2' => 'iPhone 5',
         'iPhone5,3' || 'iPhone5,4' => 'iPhone 5C',
         'iPhone6,1' || 'iPhone6,2' => 'iPhone 5S',
@@ -66,6 +64,10 @@ class FlutterNativeUserAgent {
         'iPhone14,8' => 'iPhone 14 Plus',
         'iPhone15,2' => 'iPhone 14 Pro',
         'iPhone15,3' => 'iPhone 14 Pro Max',
-        _ => 'iPhone'
+        "iPhone15,4" => "iPhone 15",
+        "iPhone15,5" => "iPhone 15 Plus",
+        "iPhone16,1" => "iPhone 15 Pro",
+        "iPhone16,2" => "iPhone 15 Pro Max",
+        _ => codeName ?? 'iPhone',
       };
 }
